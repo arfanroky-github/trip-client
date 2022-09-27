@@ -1,3 +1,4 @@
 [
-    {"id":1, "type": ""}
+    {"id":1, "type": "AC"},
+    {"id":2, "type": "NON-AC"}
 ]

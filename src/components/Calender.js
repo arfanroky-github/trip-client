@@ -1,26 +1,34 @@
 import React, { useState } from 'react'
-import { Calendar } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
-import '../styles/calender.css';
+import { Datepicker } from '@mobiscroll/react';
+import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 
 
+const CalenderDate = ({onchangehandle}) => {
 
-const CalenderDate = ({valueRef}) => {
-      const [date, setDate] = useState(null);
       const [hide, setHide] = useState(false);
 
+
+      const handleValue = async (e) => {
+        await onchangehandle(e.valueText.slice(0, 19));
+      }
+
   return (
-   
 <div className='calender-container' style={{ display: 'flex', flexFlow: 'column nowrap' }}>
     <div className='calender-header' onClick={() => setHide(!hide)}>
-        <p ref={valueRef}>{date ? date.getDate() : 'dd'}/{date ? date.getMonth() + 1 : 'mm'}/{date? date.getFullYear() : 'yyyy'}</p>
+        {/* <p >{date ? date.getDate() : 'dd'}/{date ? date.getMonth() + 1 : 'mm'}/{date? date.getFullYear() : 'yyyy'}</p> */}
         <button>+</button>
     </div>
+    <div  className='calendar-content'>
 {
-    hide &&   <Calendar className='calender' onChange={item => setDate(item)}
-    date={date} />
+    hide &&  <Datepicker 
+    controls={['calendar', 'timegrid']}
+    select="range"
+    display="inline"
+    touchUi={true}
+    onChange={handleValue}
+/>
 }
+    </div>
 </div>
   )
 }

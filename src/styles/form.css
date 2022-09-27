@@ -3,11 +3,12 @@
     min-height: 100vh;
     display: flex;
     justify-content: center;
+   
     align-items: center;
 }
 
 .form{
-    width: min-content;
+    width: max-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,6 +16,7 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
     height: min-content;
     padding: 2rem 1rem;
+    position: relative;
 }
 
 
@@ -35,7 +37,29 @@
     grid-template-columns: 1fr 1fr;
 }
 
+/* Calendar */
+.calender-container{
+        width:400px;
+        border-bottom: 2px solid black;
+        padding: .4rem 2rem .4rem .2rem ;
+        margin:10px 20px 20px 20px;
+        z-index: 100; 
+}
 
+.calender-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendar-content{
+    position: absolute;
+    width: max-content;
+    top: 240px;
+    right: 20px;
+    z-index: 100;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, .3);
+}
 
 
 
@@ -56,6 +80,10 @@
 
 .form{
     margin: 2rem 0;
+}
+
+.calender-container{
+    width: 350px;
 }
 
 }
