@@ -65,10 +65,10 @@ const TripRequest = () => {
 <DropDown listData={VehicleType} valueRef={vehicleValue} chooseValue={'Choose a vehicle'}/>
 <CalenderDate onchangehandle={setDate} />
 
-<InputFiled required={true} name='number_of_people' type='number' placeholder='Number of people'/>
-<InputFiled required={true} name='luggage' type='number' placeholder='Luggage'/>  
-<InputFiled required={true} name='max_weight' type='number ' placeholder='Maximum weight'/>
-<InputFiled required={true} name='child_seat' type='number ' placeholder='Child seat'/>
+<InputFiled minValue={0} maxValue={0} required={true} name='number_of_people' type='number' placeholder='Number of people'/>
+<InputFiled minValue={0} maxValue={0}  name='luggage' type='number' placeholder='Luggage'/>  
+<InputFiled minValue={0} maxValue={0}  name='max_weight' type='number ' placeholder='Maximum weight'/>
+<InputFiled minValue={0} maxValue={0}  name='child_seat' type='number ' placeholder='Child seat'/>
 <InputFiled required={true} name='pickup_point' type='text ' placeholder='Pick up point'/>
 <InputFiled required={true} name='destination' type='text ' placeholder='Destination'/>
 

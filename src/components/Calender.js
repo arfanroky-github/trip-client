@@ -6,16 +6,19 @@ import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 const CalenderDate = ({onchangehandle}) => {
 
       const [hide, setHide] = useState(false);
-
+      const [date, setDate] = useState(null);
 
       const handleValue = async (e) => {
         await onchangehandle(e.valueText.slice(0, 19));
+         setDate(e.valueText)
+         console.log(e.valueText);
       }
 
   return (
 <div className='calender-container' style={{ display: 'flex', flexFlow: 'column nowrap' }}>
     <div className='calender-header' onClick={() => setHide(!hide)}>
-        {/* <p >{date ? date.getDate() : 'dd'}/{date ? date.getMonth() + 1 : 'mm'}/{date? date.getFullYear() : 'yyyy'}</p> */}
+        <p>{date ? `start ${date.slice(0, 19)} 
+         end: ${date.slice(23, 40)}`: 'dd/mm/yyyy'}</p>
         <button>+</button>
     </div>
     <div  className='calendar-content'>

@@ -1,10 +1,10 @@
 import React from 'react'
 import '../styles/inputfield.css'
 
-const InputField = ({type, placeholder, required, name, onChangeHandle, defaultValue}) => {
+const InputField = ({type, placeholder, required, name, userValue, minValue, maxValue}) => {
   return (
    
-        <input onChange={onChangeHandle} required={required} name={name} className='input-field' type={type} placeholder={placeholder} />
+        <input min={minValue} max={maxValue} defaultValue={userValue}  required={required} name={name} className='input-field' type={type} placeholder={placeholder} />
 
   )
 }
