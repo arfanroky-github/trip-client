@@ -9,17 +9,19 @@ const CalenderDate = ({onchangehandle}) => {
       const [date, setDate] = useState(null);
 
       const handleValue = async (e) => {
-        await onchangehandle(e.valueText.slice(0, 19));
+        await onchangehandle(e.valueText);
          setDate(e.valueText)
-         console.log(e.valueText);
+        //  console.log(e.valueText);
       }
 
   return (
 <div className='calender-container' style={{ display: 'flex', flexFlow: 'column nowrap' }}>
-    <div className='calender-header' onClick={() => setHide(!hide)}>
+    <div className='calender-header'>
         <p>{date ? `start ${date.slice(0, 19)} 
          end: ${date.slice(23, 40)}`: 'dd/mm/yyyy'}</p>
-        <button>+</button>
+        <button  onClick={() => setHide(!hide)}>
+            {!hide ? '+' : 'x'}
+        </button>
     </div>
     <div  className='calendar-content'>
 {

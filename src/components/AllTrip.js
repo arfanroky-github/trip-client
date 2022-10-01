@@ -38,13 +38,13 @@ const AllTrip = () => {
 
 
     useEffect(() => {
-        Axios.get('/all-trips', {
-            mode: 'cors',
-            headers: headers,
-        }).then((response) => {
+        Axios.get('/all-trips').
+        then((response) => {
             setTrip(response.data);
         });
     }, []);
+
+    console.log(trip);
 
   return (
     <div>

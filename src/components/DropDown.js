@@ -10,15 +10,17 @@ const DropDown = ({valueRef, listData, chooseValue}) => {
 
   return (
     <div  className='dropdown' >
-      <div className='dropdown-header' onClick={() => setHide(!hide)}>
+      <div className='dropdown-header'>
         <p ref={valueRef}>{value ? value : chooseValue}</p>
-        <button>+</button>
+        <button  onClick={() => setHide(!hide)}>
+          {!hide ? '+' : 'x'}
+        </button>
       </div>
      {
       hide && <>
-       <ul className='dropdown-menu'>
+       <ul onClick={() => setHide(!hide)} className='dropdown-menu'>
        {
-        listData.map(e => <li key={e.id} onClick={() => setValue(e.type)}>{e.type}</li>)
+        listData.map(e => <li key={e.id} onClick={() => setValue(e.type)} >{e.type}</li>)
        }
       </ul>
       </>

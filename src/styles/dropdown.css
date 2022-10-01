@@ -3,7 +3,6 @@
     border-bottom: 2px solid black;
     padding: .4rem 2rem .4rem .2rem ;
     margin:10px 20px 20px 20px;
-    position: relative;
     z-index: 100;
 }
 
@@ -11,28 +10,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
-
-.dropdown-header > button{
-    width: 30px;
-    height: 30px;
-    font-size: 1.2rem;
-    background-color: #0d3ce3;
-    color: white;
-    outline: none;
-    border: none;
-    border-radius: 2px;
-}
-
 
 
 .dropdown-menu{
     position: absolute;
-    top: 10;
-    right: 0;
+    top: 8;
+    left: 35%;
     width: 100px;
-    height: 140px;
-    overflow-x: hidden;
+    height: min-content;
     padding: 1rem;
     list-style: none;
     display: flex;
@@ -41,7 +28,6 @@
     box-shadow: 4px 4px 8px rgba(0, 0, 0, .3);
     background-color: #0d3ce3;
     color: white;
-    z-index: 10;
   
 }
 

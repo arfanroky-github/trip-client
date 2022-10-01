@@ -3,11 +3,13 @@ import InputFiled from '../reuse/InputField';
 import '../styles/usermodel.css'
 import Button from '../reuse/Button';
 import { useNavigate } from 'react-router-dom';
+import Phone from './Phone';
 
 
 const UserModel = () => {
   const navigate = useNavigate()
   const [userData, setUserData] = useState({});
+  const [phoneValue, setPhoneValue] = useState();
 
   // Get data from localstorage
    useEffect(() => {
@@ -17,21 +19,23 @@ const UserModel = () => {
     
     const handleUserModel = (e) => {
       e.preventDefault();
- 
+
+      // Condition
+      if(!phoneValue) return alert('phone number is required!')
+
+      // User model
       const userModel = {
         fullname: e.target.fullname.value,
         email: e.target.email.value,
-        phone: e.target.phone.value,
+        phone: phoneValue,
         address: e.target.address.value
       }
-     
+
       //  localstorage set 
        window.localStorage.setItem('user-model', JSON.stringify(userModel))
         navigate('/trip-request', {state: userModel})
            
    }
-
-
 
 
 
@@ -42,7 +46,8 @@ const UserModel = () => {
       <div className='user-info'>
     <InputFiled userValue={userData?.fullname} name='fullname' required={true}  type='text' placeholder='FullName'/>  
     <InputFiled userValue={userData?.email} name='email' required={true}  type='email' placeholder='Email'/>
-    <InputFiled userValue={userData?.phone} name='phone' required={true} type='tel' placeholder='Phone'/>  
+    {/* <InputFiled userValue={userData?.phone} name='phone' required={true} type='tel' placeholder='Phone'/>   */}
+    <Phone setPhoneValue={setPhoneValue}/>
     <InputFiled userValue={userData?.address}  name='address' required={true} type='text ' placeholder='Address'/>
     <Button type={'submit'}>Next</Button>
 </div>
