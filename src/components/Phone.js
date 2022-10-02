@@ -3,7 +3,7 @@ import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import '../styles/usermodel.css';
 
-const Phone = ({setPhoneValue}) => {
+const Phone = ({setPhoneValue, phoneValue}) => {
 
     const [value, setValue] = useState();
     useEffect(() => {

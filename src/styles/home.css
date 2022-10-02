@@ -37,3 +37,23 @@
     font-weight: bolder;
     color: white;
 }
+
+
+.button-group{
+    width: max-content;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 0 2rem ;
+}
+
+.button-group > div > p{
+    font-size: 1.2rem;
+    background-color: white;
+    color: black;
+    z-index: 100;
+    font-weight: bold;
+
+}

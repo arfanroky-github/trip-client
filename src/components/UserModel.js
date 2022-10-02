@@ -20,9 +20,6 @@ const UserModel = () => {
     const handleUserModel = (e) => {
       e.preventDefault();
 
-      // Condition
-      if(!phoneValue) return alert('phone number is required!')
-
       // User model
       const userModel = {
         fullname: e.target.fullname.value,
@@ -30,6 +27,8 @@ const UserModel = () => {
         phone: phoneValue,
         address: e.target.address.value
       }
+
+      console.log('usermodel', phoneValue);
 
       //  localstorage set 
        window.localStorage.setItem('user-model', JSON.stringify(userModel))
@@ -47,7 +46,7 @@ const UserModel = () => {
     <InputFiled userValue={userData?.fullname} name='fullname' required={true}  type='text' placeholder='FullName'/>  
     <InputFiled userValue={userData?.email} name='email' required={true}  type='email' placeholder='Email'/>
     {/* <InputFiled userValue={userData?.phone} name='phone' required={true} type='tel' placeholder='Phone'/>   */}
-    <Phone setPhoneValue={setPhoneValue}/>
+    <Phone setPhoneValue={setPhoneValue} />
     <InputFiled userValue={userData?.address}  name='address' required={true} type='text ' placeholder='Address'/>
     <Button type={'submit'}>Next</Button>
 </div>

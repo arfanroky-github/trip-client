@@ -15,9 +15,20 @@ const Home = () => {
                 <span className='span'>HEY, TRAVELLER!</span>
                 Let's Enjoy Your Dream Vacation.
             </h1>
+           <div className='button-group'>
+          <div>
+            <p >Have a trip id? </p>
+          <Link to='/notify-operator'>
+              <Button>Notify Operator</Button>
+            </Link>
+          </div>
+            <div>
+              <p>Haven't tirp id?</p>
             <Link to='/user-model'>
             <Button>Let's Go</Button>
             </Link>
+            </div>
+           </div>
         </div>
     </section>
   )

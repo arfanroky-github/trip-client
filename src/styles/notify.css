@@ -1,0 +1,36 @@
+.notify-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notify-content{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.notify-content >p{
+    font-size: 1.2rem;
+    line-height: 25px;
+    text-align: center;
+}
+
+.notify-content >p>span{
+    letter-spacing: .1rem;
+    line-height: 3rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.notify-content > input{
+    outline: none;
+    border: none;
+    padding: 1rem;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, .2);
+    border: 2px dashed gray;
+    border-radius: 5px;
+}

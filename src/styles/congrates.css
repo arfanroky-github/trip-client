@@ -1,0 +1,43 @@
+.congrates-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(90deg, rgba(250, 128, 114, 0.606), rgba(255, 255, 0, 0.392));
+}
+
+.congrates-content{
+    color: white;
+}
+
+.congrates-content > h1{
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.congrates-content > h5{
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.congrates-content > span{
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: black;
+}
+
+.copyboard {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.copyboard > textarea{
+    outline: none;
+    border: none;
+    border: 2px dashed black;
+    border-radius: 4px;
+    resize: none;
+    padding-top: .4rem;
+    padding: .4rem  2rem;
+    text-align: center;
+}

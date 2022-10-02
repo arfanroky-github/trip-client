@@ -2,12 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../styles/form.css';
 import Button from '../reuse/Button';
 import InputFiled from '../reuse/InputField';
-import { json, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DropDown from './DropDown';
 import CalenderDate from './Calender';
-import TimeData from '../json/TimeData.json';
 import VehicleType from '../json/VehicleType.json';
-// import axios from 'axios';
 import Axios from '../api/Axios';
 
 
@@ -15,29 +13,42 @@ import Axios from '../api/Axios';
 const TripRequest = () => {
   const location = useLocation();
   const vehicleValue = useRef('');
-  const dateValue = useRef('');
   const navigate = useNavigate();
   const [date, setDate] = useState(null);
-  const [dt, setDt] = useState()
+  const [dateTime, setDateTime] = useState('')
+  const [startTimeSlot, setStartTimeSlot] = useState('');
+  const [endTimeSlot, setEndTimeSlot] = useState('');
 
-  console.log(location.state);
+console.log(location.state);
 
 useEffect(() => {
-  const dateTimeFormatter = () =>{
-    const dateTime = date?.slice(0, 10)
-      const dateFormat = dateTime?.split("/")
-      setDt(dateFormat?.reverse()?.join('-'))
+  const dateFormatter = async() =>{
+    const dateSlot = await date?.slice(0, 10).split("/").reverse()?.join('-')
+    setDateTime(dateSlot)
   }
-  dateTimeFormatter()
-},[])
+  dateFormatter()
 
-console.log(dt);
+  const startTime = async () => {
+    const start = await date?.slice(11, 17).trim()
+    console.log(start);
+    setStartTimeSlot(start)
+  }
+
+  startTime()
+
+  const endTime = async () => {
+    const end = await date?.slice(32, 39).trim()
+    console.log(end);
+   setEndTimeSlot(end)
+  }
+
+  endTime()
+
+
+},[date])
 
   const handleTripRequest = async (e) => {
     await e.preventDefault();
-
-
-
 
     const tripCrendial = {
       trip_data: {
@@ -53,9 +64,9 @@ console.log(dt);
         child_seat: e.target.child_seat.value,
         pickup_point: e.target.pickup_point.value,
         destination:  e.target.destination.value,
-        date: dt,
-        pickup_time: '10:45',
-		    // drop_time: date?.slice(33, 41)
+        date: e.target.date.value,
+        pickup_time: e.target.pickup_time.value,
+		    drop_time: e.target.drop_time.value
            
   
       },
@@ -65,45 +76,11 @@ console.log(dt);
       ]
     }
 
-  //  const test = {
-  //       trip_data: {
-  //       full_name: "Tasnia Shifa ",
-  //       email: "rokyyy@gmail.com",
-  //       phone: "016200317235",
-  //       address: "Dhaka",
-  //       web_url: "https://stackoverflow.com/questions/53434094/django-rest-framework-how-to-post-date-field",
-  //       vehicle_type: "ac",
-  //       number_of_people: "2",
-  //       luggage: "6",
-  //       max_weight: "120",
-  //       child_seat: "1",
-  //       pickup_point: "dhaka",
-  //       destination: "chittagong",
-  //       date: "2015-02-11",
-  //       pickup_time: "10:50",
-  //       drop_time: "12:00"
-  //     },
-  //     stops: [
-  //       "cummila",
-  //       "barishal"
-  //     ]
-  //   }
+    const res = await Axios.post('/request-trip/', tripCrendial)
+    console.log(res.data);
 
-    // console.log(tripCrendial);
-
-    // const res = await Axios.post('/request-trip/',{test})
-    // console.log(res);
-
-    const res = await fetch('http://178.62.196.98:8000/api/v1/request-trip/', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(tripCrendial)
-    })
-    const data = await res.json();
-    if(data){
-      navigate('/request-id', {state: data.trip_request_id})
+    if(res.data.trip_request_id){
+      navigate('/congrates-page', {state: res.data.trip_request_id})
     }
 
 
@@ -118,7 +95,10 @@ console.log(dt);
       <h1 className='trip-heading'>Let's <span className='extra-heading'>Create</span> Trip for <br/> your new <span className='extra-heading'>Vacation</span> </h1>
       <div className='form-content'>
 <DropDown listData={VehicleType} valueRef={vehicleValue} chooseValue={'Choose a vehicle'}/>
-<CalenderDate onchangehandle={setDate} />
+{/* <CalenderDate onchangehandle={setDate} /> */}
+<InputFiled name='date' type='date' placeholder='date' required={true}/>
+<InputFiled name='pickup_time' type='time' placeholder='pick_time' required={true}/>
+<InputFiled name='drop_time' type='time' placeholder='Drop_time' required={true}/>
 
 <InputFiled minValue={1} maxValue={5} required={true} name='number_of_people' type='number' placeholder='Number of people'/>
 <InputFiled minValue={0} maxValue={4}  name='child_seat' type='number' placeholder='child_seat'/>  
@@ -136,28 +116,3 @@ console.log(dt);
 }
 
 export default TripRequest
-
-
-  // const tripCrendial =  {
-  //    trip_data : {
-  //      full_name : "makia Zaman ",
-  //      email : "arfandfrrky0@gmail.com",
-  //      phone : "01346758575",
-  //      address : "Dhaka",
-  //      web_url : "https://stackoverflow.com/questions/53434094/django-rest-framework-how-to-post-date-field",
-  //      vehicle_type : "ac",
-  //      number_of_people : "2",
-  //      luggage : "6",
-  //      max_weight : "120",
-  //      child_seat : "1",
-  //       pickup_point: "dhaka",
-  //       destination: "chittagong",
-  //       date: "2015-02-11",
-  //       pickup_time: "10:50"
-  //     },
-  //     stops: [
-  //       "cummila",
-  //       "barishal"
-  //     ]
-  //   }
-    
